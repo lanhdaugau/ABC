@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<style>
+*{
+	margin: 0;
+	padding: 0;
+}
+.header{
+	background-color:black;
+	width: 100%;
+	padding: 20px 0px;
+	color: white;
+	display: flex;
+}
+.text-header{
+	color: white;
+	width: 250px;
+}
+.header .icon{
+	padding-right: 8%;
+}
+.header .icon:first-child{
+	padding-left: 2%;
+	font-size: 1.2rem;
+}
+.icon-right{
+	padding-left: 50%;
+	padding-right: 2%;
+}
+.icon-img{
+	
+}
+.content{
+	display: flex;
+	
+	background-color: rgb(221, 219, 219);
+
+}	
+.content .item:last-child{
+	padding-left: 10%;
+}
+.content .choose{
+	width: 10%;
+	background-color: white;
+	height: 570px;
+	padding-top: 1%;
+}
+.content .choose ul li{
+	/* background-color: black; */
+	list-style: none;
+	width: 100%;
+	/* color: white; */
+	text-indent: 10px;
+	margin-top: +20px;
+	
+	
+}
+a{
+	text-decoration: none;
+}
+
+.property ul{
+	display: flex;
+	padding-top: 20px;
+}
+.property ul a{
+	list-style: none;
+	padding-top: 10px;
+	width: 18vw;
+	height: 90px;
+	background-color: rgb(169, 179, 238);
+	padding-right: 20px;
+	padding-left: 10px;
+	margin-right: 5%;
+	border-radius: 5px;
+	color: rgb(245, 245, 245);
+	
+}
+.information{
+	/* text-align: center; */
+	width: 95%;
+	background-color: white;
+	margin-top: +30px;
+	height: 400px;
+	box-shadow: 2px 2px 2px 2px  rgb(96, 96, 96);
+	border-radius: 5px;
+	padding: 10px;
+	overflow: auto;
+}
+.compliment{
+	width: 100%;
+	height: 35px;
+	
+	color: rgb(0, 128, 255);
+}
+.button{
+	width: 40px;
+	height: auto;
+	
+	border: 1px solid black ;
+
+	border-radius: 5px;
+	background-color: white;
+	cursor: pointer;
+}
+
+.info{
+	
+	border: 1px solid #385ABA;
+	color: #385ABA;
+}
+.edit{
+	border: 1px solid yellow;
+	color: yellow;
+}
+.delete{
+	border: 1px solid red;
+	color :red;
+}
+table{
+	background-color: #F9F6F6;
+}
+th,td{
+	border: 1px solid gray;
+} 
+</style>
+<link
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css"
+	rel="stylesheet">
+
+<body>
+
+	<div class="header">
+		
+		<a href="/home"> <div class="icon text-header">Manager personnel</div></a>  
+		<div class="icon search-button">
+			<i class="fa fa-list"></i>
+		</div>
+		<a href="/search" style="color: white">
+		<div class="icon search-button">
+			<i class="fa fa-search"></i>
+		</div></a>
+		
+		
+	</div>
+	<div class="content">
+		<div class="item choose">
+			<ul>
+				<li><i class="fa fa-home"></i> Dashboard</li>
+				<li><a href="/login"><i class="fa fa-wrench"></i>Manager</a></li>
+				<li><a href="/index"><i class="fa fa-share"
+						aria-hidden="true"></i> Logout</a></li>
+			</ul>
+		</div>
+		<div class="item view">
+			<div class="property">
+				<ul>
+					<a href="/add">
+						<li class="component">Add Staff <br> <br> <i
+							class="fa fa-user"></i>
+					</li>
+					</a>
+					<a style="background-color: rgb(93, 240, 191);" href="/depart">
+
+						<li class="component">Depart <br> <br> <i
+							class="fa fa-business-time"></i>
+					</li>
+					</a>
+					<a style="background-color: burlywood;" href="/staff">
+						<li class="component">Staff <br> <br> <i
+							class="fa fa-male"></i>
+					</li>
+					</a>
+					<a style="background-color: indianred;" href="/search_record">
+
+						<li class="component">Record <br> <br> <i
+							class="fa fa-star"></i>
+					</li>
+					</a>
+				</ul>
+			</div>
+			<div class="information">
+				<div class="compliment" style="color: black">
+					<i class="fa fa-business-time"></i> Depart
+				</div>
+				<table  style="text-align: center">
+
+					<tr>
+						<td width="200px" style="border: 1px solid  #E7E7E7"> </td>
+						<td style="width: 200px">ACCOUNTANT</td>
+						<td style="width: 200px">BUSINESS</td>
+						<td style="width: 200px">INFORMTION TECHNOLOGY</td>
+						<td style="width: 200px">MANUFATURING</td>
+
+						<td style="width: 200px">PERSONEL</td>
+
+					
+
+
+					</tr>
+			<tr>
+				<td> Quantity Staff</td>
+				
+						<td >[[${countAcc}]]</td>
+						<td style="width: 200px">[[${countBus}]]</td>
+						<td style="width: 200px">[[${countIt}]]</td>
+						<td style="width: 200px">[[${countMan}]]</td>
+
+						<td style="width: 200px">[[${countPer}]]</td>
+			</tr>
+
+				</table>
+				<div style="display: flex">
+				 <div id="piechart" style="width: 500px; height: 300px;"></div>
+				  <div id="piechart1" style="width: 500px; height: 300px;"></div>
+				 </div>
+				  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+
+    	  var data = google.visualization.arrayToDataTable([
+              ['Task', 'Hours per Day'],
+              ['Accountant',[[${countAcc}]] ],
+              ['Business',    [[${countBus}]]],
+              ['Information Technology',  [[${countIt}]]],
+              ['Manfuturing', [[${countMan}]]],
+              ['Personel',   [[${countPer}]]]
+            ]);
+
+        var options = {
+          title: 'Depart'
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+
+        chart.draw(data, options);
+      }
+    </script>
+       <script type="text/javascript">
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+
+    	  var data = google.visualization.arrayToDataTable([
+              ['Task', 'Gender'],
+              ['Female',[[${female}]] ],
+              ['Male',   [[${male}]]]
+            ]);
+
+        var options = {
+          title: 'Gender'
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('piechart1'));
+
+        chart.draw(data, options);
+      }
+    </script>
+				<script type="text/javascript"></script>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
